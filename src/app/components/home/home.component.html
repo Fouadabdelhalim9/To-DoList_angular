@@ -1,0 +1,66 @@
+
+    <div class="container ">
+        <div class="mt-5 mb-4 text-center">
+            <img style="width: 100px;" class="mt-5 mb-4 text-center " src="https://res.cdn.office.net/todo/1630603_2.116.1/icons/logo.png" alt="">
+                <h1 class=" text-primary">To-Do List</h1>
+        </div>
+    
+        <div class="input-group mb-3 flex-column col-12">
+            <div class=" mb-3">
+                <input #TaskName type="text" class="form-control m-2"  placeholder="Add a TaskName" required>
+                <input #CreatorName type="text" class="form-control m-2" placeholder="Add a CreatorName" required>
+                <input #Description type="text" class="form-control m-2" placeholder="Add a Description" required>
+
+              </div>
+            <div class="input-group-append ">
+                <button  (click)="addTask(TaskName,CreatorName,Description);changeColor()" class="btn btn-primary m-2 text-center col-12" type="button" onclick="addTask()">AddTask</button>
+            </div>
+        </div>
+        <!-- no tasks -->
+        <ul id="taskList" class="list-group"  *ngIf="taskServices.tasks.length ==0"  >
+             <li class="list-group-item">  <h1 class="alert alert-danger"> Tasks will be added here</h1> </li> 
+
+        </ul>
+        <!-- tasks -->
+
+        <div *ngIf="taskServices.tasks.length !=0">
+
+            <ul class="list-group list-group-horizontal-sm">
+                <li  [style.background]="currentColor" class="list-group-item col-3 text-center"><b>TaskName</b></li>
+                <li  [style.background]="currentColor" class="list-group-item col-3 text-center"><b>CreatorName</b></li>
+                <li  [style.background]="currentColor" class="list-group-item col-3 text-center"><b>Description</b></li>
+                <li  [style.background]="currentColor" class="list-group-item col-3 text-center"><b>Actions</b></li>
+              </ul>
+            <ul class="list-group list-group-horizontal" *ngFor="let Task of taskServices.tasks ;index as i">
+                    <li class="list-group-item col-3 text-center">{{Task.TaskName}}</li>
+                    <li class="list-group-item col-3 text-center">{{Task.CreatorName}}</li>
+                    <li class="list-group-item col-3 text-center">{{Task.Description}}</li>
+                    <li class="col-3 list-group-item">
+
+                    <span class="col-6">
+                      <input style="width:25px;height: 25px;" class="form-check-input col-6 me-2" type="checkbox" value="" id="flexCheckDefault">
+                    </span>
+                    <!-- <span class="col-4">
+<b>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-clockwise col-4 color-primary " viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                      </svg>
+                    </b>
+                    </span> -->
+
+                    <span class="col-6">
+                      <svg  (click)="deleteTask(i)" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-trash-fill col-6 text-sacandary" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                      </svg>
+                   </span>
+
+                        </li>
+                
+        
+            </ul>
+
+    </div>
+
+
+ 
